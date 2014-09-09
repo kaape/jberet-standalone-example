@@ -9,8 +9,8 @@ To start the example run
 
 ## References
 
-Build by using this tutorial article:
+Built by using this tutorial article:
 http://www.mastertheboss.com/batch-api/running-batch-jobs-in-j2se-applications
 
-Should provide a minimal functional example to help the question answered here:
+Should provide a minimal functional example to help answer the question here:
 http://stackoverflow.com/questions/25734863/standalone-example-on-jberet-jsr352
