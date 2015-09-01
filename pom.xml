@@ -1,87 +1,128 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.ditemis.jberet</groupId>
-	<artifactId>jberet-standalone-example</artifactId>
-	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>jberet-standalone-example</name>
-	<description>An example how to setup jberet as a standalone java application</description>
-	<repositories>
-		<repository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Repository Group</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
-	<dependencies>
-		<dependency>
-			<groupId>org.jboss.spec.javax.batch</groupId>
-			<artifactId>jboss-batch-api_1.0_spec</artifactId>
-			<version>1.0.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jberet</groupId>
-			<artifactId>jberet-core</artifactId>
-			<version>1.0.2.Final</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-		</dependency>
-		<dependency>
-			<groupId>org.jberet</groupId>
-			<artifactId>jberet-support</artifactId>
-			<version>1.0.2.Final</version>
+  <modelVersion>4.0.0</modelVersion>
 
-		</dependency>
+  <groupId>com.ditemis.jberet</groupId>
+  <artifactId>jberet-standalone-example</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencyManagement/>
+  <dependencies>
+    <dependency>
+      <groupId>javax.batch</groupId>
+      <artifactId>javax.batch-api</artifactId>
+      <version>1.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>jta</artifactId>
+      <version>1.1</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>org.jberet</groupId>
+      <artifactId>jberet-core</artifactId>
+      <version>${jberet.version}</version>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>org.jberet</groupId>
+      <artifactId>jberet-se</artifactId>
+      <version>${jberet.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jberet</groupId>
+      <artifactId>jberet-support</artifactId>
+      <version>${jberet.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.marshalling</groupId>
+      <artifactId>jboss-marshalling</artifactId>
+      <version>2.0.0.Beta2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-core</artifactId>
+      <version>2.1.1.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.weld.se</groupId>
+      <artifactId>weld-se</artifactId>
+      <version>2.2.15.Final</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.188</version>
+    </dependency>
+  </dependencies>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.testSource>1.8</maven.compiler.testSource>
+    <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
+    <jberet.version>1.2.0.Beta1</jberet.version>
+    <main.class>com.ditemis.jberet.Main</main.class>
+  </properties>
 
-		<dependency>
-			<groupId>org.jboss.spec.javax.transaction</groupId>
-			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
-			<version>1.0.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.marshalling</groupId>
-			<artifactId>jboss-marshalling</artifactId>
-			<version>1.4.2.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld</groupId>
-			<artifactId>weld-core</artifactId>
-			<version>2.1.1.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld.se</groupId>
-			<artifactId>weld-se</artifactId>
-			<version>2.1.1.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jberet</groupId>
-			<artifactId>jberet-se</artifactId>
-			<version>1.0.2.Final</version>
-		</dependency>
-		<dependency>
-		   <groupId>com.h2database</groupId>
-		   <artifactId>h2</artifactId>
-		   <version>1.4.178</version>
-		</dependency>
-	</dependencies>
-	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<mainClass>com.ditemis.jberet.Main</mainClass>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+  <!-- Build Settings -->
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.4.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>${main.class}</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- More Project Information -->
+  <name>${project.artifactId}</name>
+  <description>An example how to setup jberet as a standalone java application</description>
+  <url>https://github.com/kaape/${project.artifactId}</url>
+  <inceptionYear/>
+  <licenses/>
+  <organization />
+  <developers/>
+  <contributors />
+
+  <!-- Environment Settings -->
+  <issueManagement/>
+  <ciManagement />
+  <mailingLists />
+  <scm>
+    <developerConnection>scm:git:git@github.com:kaape/jberet-standalone-example.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <prerequisites/>
+  <repositories />
+  <pluginRepositories />
+  <distributionManagement/>
+  <profiles/>
+
 </project>
